@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-icon">📚</span><span>Library<span class="brand-light">Desk</span></span></div>
+    <p class="menu-label">MAIN MENU</p>
+    <button class="nav-item active" data-page="dashboard"><span>▦</span> Dashboard</button>
+    <button class="nav-item" data-page="books"><span>▤</span> All Books</button>
+    <button class="nav-item" data-page="add"><span>＋</span> Add a Book</button>
+    <div class="sidebar-bottom">
+      <div class="avatar">L</div>
+      <div><strong>Library Admin</strong><small>Management Portal</small></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">LIBRARY MANAGEMENT</p>
+        <h1 id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="topbar-right"><span class="status-dot"></span> System online</div>
+    </header>
+
+    <section id="dashboardPage" class="page">
+      <div class="welcome">
+        <div><p class="eyebrow light">YOUR LIBRARY AT A GLANCE</p><h2>Good day, Librarian 👋</h2><p>Keep your collection organised and up to date.</p></div>
+        <button class="button button-white" id="quickAdd">＋ Add new book</button>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-icon blue">▤</div><div><p>Total books</p><h3 id="totalCount">0</h3><small>In your collection</small></div></article>
+        <article class="stat-card"><div class="stat-icon green">✓</div><div><p>Available</p><h3 id="availableCount">0</h3><small>Ready to borrow</small></div></article>
+        <article class="stat-card"><div class="stat-icon orange">↗</div><div><p>Issued</p><h3 id="issuedCount">0</h3><small>Currently borrowed</small></div></article>
+      </div>
+
+      <section class="panel">
+        <div class="panel-heading"><div><h2>Recently added books</h2><p>Your latest library additions</p></div><button class="text-button" id="viewAll">View all →</button></div>
+        <div class="table-wrap"><table><thead><tr><th>BOOK DETAILS</th><th>AUTHOR</th><th>CATEGORY</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="recentBooks"></tbody></table></div>
+        <div id="emptyRecent" class="empty-state hidden"><span>📖</span><strong>No books yet</strong><p>Add your first book to get started.</p><button class="button" id="emptyAdd">Add a book</button></div>
+      </section>
+      <p class="footer-note">LibraryDesk · Simple, organised, efficient.</p>
+    </section>
+
+    <section id="booksPage" class="page hidden">
+      <section class="panel">
+        <div class="panel-heading books-heading"><div><h2>All books</h2><p>Manage and track your book collection</p></div><button class="button" id="booksAdd">＋ Add a book</button></div>
+        <div class="toolbar"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search by title or author..."></label><select id="statusFilter" aria-label="Filter by status"><option value="all">All statuses</option><option value="available">Available</option><option value="issued">Issued</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>BOOK DETAILS</th><th>AUTHOR</th><th>CATEGORY</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="allBooks"></tbody></table></div>
+        <div id="emptyBooks" class="empty-state hidden"><span>📚</span><strong>No matching books</strong><p>Try another search or add a new book.</p></div>
+      </section>
+    </section>
+
+    <section id="addPage" class="page hidden">
+      <section class="form-panel">
+        <div class="form-intro"><div class="form-icon">＋</div><h2>Add a new book</h2><p>Enter the details below to add a book to your library.</p></div>
+        <form id="bookForm">
+          <div class="form-grid">
+            <label>Book title <span>*</span><input id="bookTitle" name="title" placeholder="e.g. The Alchemist" required maxlength="100"></label>
+            <label>Author name <span>*</span><input id="bookAuthor" name="author" placeholder="e.g. Paulo Coelho" required maxlength="80"></label>
+            <label>Category <span>*</span><select id="bookCategory" name="category" required><option value="">Select a category</option><option>Fiction</option><option>Science</option><option>Technology</option><option>History</option><option>Education</option><option>Biography</option><option>Other</option></select></label>
+            <label>Book ID <span class="optional">(optional)</span><input id="bookId" name="bookId" placeholder="Auto-generated if blank" maxlength="20"></label>
+          </div>
+          <div id="formError" class="form-error hidden"></div>
+          <div class="form-actions"><button type="button" class="button button-secondary" id="cancelAdd">Cancel</button><button type="submit" class="button">Save book <span>→</span></button></div>
+        </form>
+      </section>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
